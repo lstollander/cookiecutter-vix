@@ -1,0 +1,154 @@
+{
+  "name": "{{cookiecutter.project_slug}}",
+  "version": "0.0.0",
+  "description": "{{cookiecutter.description}}",
+  "author": "{{ cookiecutter.author_name }}",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode development --progress",
+    "build:prod": "webpack --mode production",
+    "commit": "git-cz",
+    "css-fix": "npx stylelint {{cookiecutter.project_slug}}/static/css/ --fix",
+    "dev": "webpack --mode development --progress --watch",
+    "dev:reload": "webpack serve",
+    "lint:format": "prettier --check '**/?(.)*.{md,css,scss,js,json,yaml,yml}'",
+    "lint:js": "eslint --ext \".js\" --ignore-path .gitignore {{cookiecutter.project_slug}}/assets/js/",
+    "lint:style": "stylelint \"{{cookiecutter.project_slug}}/assets/scss/**/*.{scss,css}\" --ignore-path .gitignore",
+    "lint": "npm run lint:js && npm run lint:style && npm run lint:format",
+    "release": "standard-version"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/eslint-parser": "^7.23.10",
+    "@babel/preset-env": "^7.23.9",
+    "autoprefixer": "^10.4.17",
+    "babel-loader": "^9.1.3",
+    "bourbon": "^7.3.0",
+    "commitizen": "^4.3.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.10.0",
+    "cssnano": "^6.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-webpack-plugin": "^4.0.1",
+    "mini-css-extract-plugin": "^2.8.0",
+    "mjml": "^4.15.3",
+    "postcss-custom-properties": "^13.3.4",
+    "postcss-loader": "^7.3.3",
+    "prettier": "^3.2.5",
+    "sass": "~1.32.11",
+    "sass-loader": "^13.3.2",
+    "standard-version": "^9.5.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.1.0",
+    "stylelint-webpack-plugin": "^4.1.1",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "browserslist": {
+    "production": [
+      ">5%",
+      "last 2 versions",
+      "not ie > 0",
+      "not ie_mob > 0",
+      "Firefox ESR"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 edge version"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard-scss"
+    ],
+    "rules": {
+      "at-rule-no-unknown": null,
+      "scss/at-rule-no-unknown": true,
+      "scss/at-import-partial-extension": null
+    },
+    "ignoreFiles": [
+      "**/static/**/*.*",
+      "**/staticfiles/css/*.*"
+    ]
+  },
+  "standard-version": {
+    "header": "# Changelog\n\nAll notable changes to this project will be documented here.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n",
+    "types": [
+      {
+        "type": "feat",
+        "section": "🚀 Features"
+      },
+      {
+        "type": "fix",
+        "section": "🐛 Bug Fixes"
+      },
+      {
+        "type": "docs",
+        "section": "📝 Docs",
+        "hidden": false
+      },
+      {
+        "type": "style",
+        "section": "💄 Styling",
+        "hidden": false
+      },
+      {
+        "type": "refactor",
+        "hidden": false,
+        "section": "♻️ Code Refactoring"
+      },
+      {
+        "type": "perf",
+        "section": "⚡️ Performance Improvements",
+        "hidden": false
+      },
+      {
+        "type": "test",
+        "section": "✅ Tests",
+        "hidden": false
+      },
+      {
+        "type": "build",
+        "section": "⚙️ Build System",
+        "hidden": false
+      },
+      {
+        "type": "ci",
+        "section": "👷 CI/CD",
+        "hidden": false
+      },
+      {
+        "type": "chore",
+        "section": "🚧 Others",
+        "hidden": true
+      },
+      {
+        "type": "revert",
+        "section": "⏪️ Reverts",
+        "hidden": true
+      }
+    ],
+    "scripts": {
+      "prechangelog": "sed -e '1,6d' -i CHANGELOG.md",
+      "postchangelog": "sed -e 's/###\\ \\[/##\\ \\[v/g' -i CHANGELOG.md && sed -re 's/##\\ \\[([0-9])/##\\ \\[v\\1/g' -i CHANGELOG.md"
+    }
+  },
+  "engines": {
+    "node": ">= 18 <19",
+    "npm": ">= 10"
+  }
+}

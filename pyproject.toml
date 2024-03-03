@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | (.*)/migrations
+    | dist
+    | \{\{cookiecutter\.project_slug\}\}
+  )/
+)
+'''
+
+[bumpver]
+current_version = "2024.02.10"
+version_pattern = "[v]YYYY.0M.0D[-TAG]"
+commit = false
+tag = false
+push = false
+
+[bumpver.file_patterns]
+"package.json" = [
+    '"version": "{version}"',
+]
+"package-lock.json" = [
+    '"version": "{version}"',
+]
+"pyproject.toml" = [
+    'current_version = "{version}"',
+    # 'version = "{version}"',
+]
